@@ -8,7 +8,7 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [countriesPerPage] = useState(10)
+  const [countriesPerPage] = useState(20)
 
   useEffect(() => {
     const getCountries = async () => {
@@ -26,9 +26,11 @@ function App() {
   const currentCountryIndex = countries.slice(firstCountryIndex, lastCountryIndex)
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const nextPage = () => {
     setCurrentPage(prev => prev + 1)
   }
+  
   const prevPage = () => {
     setCurrentPage(prev => prev - 1)
   }
@@ -39,8 +41,8 @@ function App() {
       <div className='container'>
         <Countries countries={currentCountryIndex} loading={loading} />
         <Pagination countriesPerPage={countriesPerPage} totalCountries={countries.length} paginate={paginate}/>
-        <button onClick={nextPage}>Prev Page</button>
-        <button onClick={prevPage}>Next Page</button>
+        <button onClick={prevPage}>Prev Page</button>
+        <button onClick={nextPage}>Next Page</button>
       </div>
     </div>
   );
